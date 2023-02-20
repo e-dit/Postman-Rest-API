@@ -582,7 +582,7 @@
 							"script": {
 								"id": "bb89a90b-6c7a-415c-825b-25f926359ab5",
 								"exec": [
-									"pm.environment.set(\"randomcomment\", pm.variables.replaceIn('{{$random}}'));"
+									"pm.environment.set(\"randomcomment\", pm.variables.replaceIn('{{$randomBsBuzz}}'));"
 								],
 								"type": "text/javascript"
 							}
