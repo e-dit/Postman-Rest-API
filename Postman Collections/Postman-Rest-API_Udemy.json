@@ -592,7 +592,7 @@
 							"script": {
 								"id": "bb89a90b-6c7a-415c-825b-25f926359ab5",
 								"exec": [
-									"pm.environment.set(\"randomcomment\", pm.variables.replaceIn('{{$randomCompanyName'));"
+									"pm.environment.set(\"randomCompanyName\", pm.variables.replaceIn('{{$randomCompanyName'));"
 								],
 								"type": "text/javascript"
 							}
@@ -607,7 +607,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"body\": \"{{$randomcomment}}\",\r\n    \"postId\": 12\r\n}",
+							"raw": "{\r\n    \"body\": \"{{randomCompanyName}}\",\r\n    \"postId\": 12\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
