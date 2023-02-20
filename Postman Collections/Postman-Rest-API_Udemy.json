@@ -53,6 +53,7 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "7410ea93-9e23-4a30-a553-6862a720b556",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
@@ -61,7 +62,7 @@
 									"    pm.expect(pm.response.text()).to.include(\"json-server\");\r",
 									"});\r",
 									"pm.test(\"Check author - contains string\", function () {\r",
-									"    pm.expect(pm.response.text()).to.include(\"typ\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"typi\");\r",
 									"});\r",
 									"pm.test(\"Check author - JSON value check\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
@@ -72,8 +73,7 @@
 									"    pm.expect(jsonData.title).to.eql(\"json-server\");\r",
 									"});"
 								],
-								"type": "text/javascript",
-								"id": "7410ea93-9e23-4a30-a553-6862a720b556"
+								"type": "text/javascript"
 							}
 						}
 					],
