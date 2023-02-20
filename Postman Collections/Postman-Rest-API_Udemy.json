@@ -168,6 +168,7 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "82c031d8-be55-4cd1-a782-123623393a8d",
 								"exec": [
 									"pm.test(\"Status code is 201\", function () {\r",
 									"    pm.response.to.have.status(201);\r",
@@ -175,15 +176,14 @@
 									"\r",
 									"pm.test(\"Check author - JSON value check\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData.author).to.eql(\"author globalna\");\r",
+									"    pm.expect(jsonData.author).to.eql(\"author\");\r",
 									"});\r",
 									"pm.test(\"Check title - JSON value check\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
 									"    pm.expect(jsonData.title).to.eql(pm.globals.get(\"title\"));\r",
 									"});"
 								],
-								"type": "text/javascript",
-								"id": "82c031d8-be55-4cd1-a782-123623393a8d"
+								"type": "text/javascript"
 							}
 						}
 					],
