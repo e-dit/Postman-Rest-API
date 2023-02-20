@@ -62,20 +62,25 @@
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
+									"\r",
 									"pm.test(\"Check title - contains string\", function () {\r",
 									"    pm.expect(pm.response.text()).to.include(\"json-server\");\r",
 									"});\r",
+									"\r",
 									"pm.test(\"Check author - contains string\", function () {\r",
 									"    pm.expect(pm.response.text()).to.include(\"typi\");\r",
 									"});\r",
+									"\r",
 									"pm.test(\"Check author - JSON value check\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
 									"    pm.expect(jsonData.author).to.eql(\"typicode\");\r",
 									"});\r",
+									"\r",
 									"pm.test(\"Check title - JSON value check\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
 									"    pm.expect(jsonData.title).to.eql(\"json-server\");\r",
-									"});"
+									"});\r",
+									""
 								],
 								"type": "text/javascript"
 							}
