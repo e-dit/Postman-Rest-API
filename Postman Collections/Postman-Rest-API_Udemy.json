@@ -377,7 +377,7 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": "http://{{host}}:3000/posts/{{iddelete}}"
+						"url": "http://{{host}}:3000/posts/{{idToDelete}}"
 					},
 					"response": []
 				}
