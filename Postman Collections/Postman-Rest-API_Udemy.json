@@ -368,11 +368,13 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "a7fe4959-dd32-4e90-8275-589d19af3a98",
 								"exec": [
-									""
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
 								],
-								"type": "text/javascript",
-								"id": "a7fe4959-dd32-4e90-8275-589d19af3a98"
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -383,7 +385,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://localhost:3000/comments/3"
+						"url": "http://{{host}}:3000/comments/3"
 					},
 					"response": []
 				},
