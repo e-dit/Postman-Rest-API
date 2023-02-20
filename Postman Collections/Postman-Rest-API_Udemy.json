@@ -296,7 +296,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "544acbf6-053b-4838-a561-a643b37d2eb2",
+								"id": "fca67d84-18cb-49be-9f74-00dbb4596c1b",
 								"exec": [
 									"pm.test(\"Status code is 201\", function () {\r",
 									"    pm.response.to.have.status(201);\r",
@@ -315,10 +315,10 @@
 									"\r",
 									"pm.test(\"Check id\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData.id).to.eql(pm.environment.get(\"iddelete\"));\r",
+									"    pm.expect(jsonData.id).to.eql(pm.globals.get(\"idToDelete\"));\r",
 									"});\r",
 									"\r",
-									"pm.environment.set(\"iddelete\", pm.response.json().id);"
+									"pm.globals.set(\"idToDelete\", pm.response.json().id);"
 								],
 								"type": "text/javascript"
 							}
@@ -326,7 +326,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "63ed3041-bf8d-4f89-a849-f16569f6424b",
+								"id": "5d4be632-59ce-4989-9976-06a3371fcd7b",
 								"exec": [
 									"pm.environment.set(\"randomName\", pm.variables.replaceIn('{{$randomFullName}}'));"
 								],
@@ -350,7 +350,7 @@
 								}
 							}
 						},
-						"url": "http://{{host}}:3000/posts{{"
+						"url": "http://{{host}}:3000/posts"
 					},
 					"response": []
 				},
