@@ -597,7 +597,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"body\": {{randomcomment}},\r\n    \"postId\": 8\r\n}",
+							"raw": "{\r\n    \"body\": \"{{$randomcomment}}\",\r\n    \"postId\": 12\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
