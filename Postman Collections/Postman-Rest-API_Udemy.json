@@ -418,11 +418,11 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "c108656d-7847-4a77-b3f7-282401f819aa",
 								"exec": [
 									""
 								],
-								"type": "text/javascript",
-								"id": "34eba14c-4663-4367-aa39-ee8b88e7ec85"
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -433,7 +433,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://localhost:3000/comments/1"
+						"url": "http://{{host}}:3000/comments/1"
 					},
 					"response": []
 				},
