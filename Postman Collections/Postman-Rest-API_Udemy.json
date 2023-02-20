@@ -614,11 +614,11 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "6bfc303d-3231-498e-a6fa-860881769dc6",
 								"exec": [
 									""
 								],
-								"type": "text/javascript",
-								"id": "6bfc303d-3231-498e-a6fa-860881769dc6"
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -629,7 +629,7 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": "http://localhost:3000/comments/3"
+						"url": "http://localhost:3000/comments/{{randomcomment}}"
 					},
 					"response": []
 				}
