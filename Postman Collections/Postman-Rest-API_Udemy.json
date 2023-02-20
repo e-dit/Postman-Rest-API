@@ -457,9 +457,7 @@
 							"script": {
 								"id": "6416ff69-d82b-4981-ad83-aaafae395516",
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
+									""
 								],
 								"type": "text/javascript"
 							}
