@@ -296,7 +296,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "fca67d84-18cb-49be-9f74-00dbb4596c1b",
+								"id": "cb3cb112-b37d-4785-aa1e-cb4281047f93",
 								"exec": [
 									"pm.test(\"Status code is 201\", function () {\r",
 									"    pm.response.to.have.status(201);\r",
@@ -315,7 +315,7 @@
 									"\r",
 									"pm.test(\"Check id\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData.id).to.eql(pm.globals.get(\"idToDelete\"));\r",
+									"    pm.expect(jsonData.id).to.eql(pm.globals.get(\"id\"));\r",
 									"});\r",
 									"\r",
 									"pm.globals.set(\"idToDelete\", pm.response.json().id);"
@@ -326,7 +326,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "5d4be632-59ce-4989-9976-06a3371fcd7b",
+								"id": "2b0d94ad-4245-41d5-91f7-a10f6814fcb3",
 								"exec": [
 									"pm.environment.set(\"randomName\", pm.variables.replaceIn('{{$randomFullName}}'));"
 								],
