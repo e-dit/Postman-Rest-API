@@ -652,20 +652,24 @@
 				}
 			],
 			"id": "a479d728-07d7-4949-8f12-18ff7bf281b9",
+			"auth": {
+				"type": "noauth"
+			},
 			"event": [
 				{
 					"listen": "prerequest",
 					"script": {
+						"id": "af1d36fb-3bd5-4833-995d-1d9fb1a65948",
 						"type": "text/javascript",
 						"exec": [
 							""
-						],
-						"id": "ba3345be-d76f-42af-b949-f5c1701fbc81"
+						]
 					}
 				},
 				{
 					"listen": "test",
 					"script": {
+						"id": "4d5db811-e2dd-4f93-9c06-b97388653b5f",
 						"type": "text/javascript",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
@@ -674,8 +678,7 @@
 							"pm.test(\"Successful requests\", function () {",
 							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
 							"});"
-						],
-						"id": "d3c418d5-6629-4af6-b68e-ba08ffa6b4f3"
+						]
 					}
 				}
 			]
