@@ -398,18 +398,22 @@
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
+									"\r",
 									"pm.test(\"Autor - lista\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
 									"    pm.expect(jsonData[0].author).to.eql(\"typicode\");\r",
 									"});\r",
+									"\r",
 									"pm.test(\"Autor - lista\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
 									"    pm.expect(jsonData[1].author).to.eql(\"typicode2\");\r",
 									"});\r",
+									"\r",
 									"pm.test(\"Autor - lista\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
 									"    pm.expect(jsonData[2].author).to.eql(\"typicode\");\r",
-									"});"
+									"});\r",
+									""
 								],
 								"type": "text/javascript"
 							}
