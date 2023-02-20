@@ -639,7 +639,7 @@
 									"\r",
 									"pm.test(\"Check comment\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData.).to.eql(pm.environment.get(\"randomcompany\"))\r",
+									"    pm.expect(jsonData.comment).to.eql(pm.environment.get(\"randomcomment\"))\r",
 									"});"
 								],
 								"type": "text/javascript"
