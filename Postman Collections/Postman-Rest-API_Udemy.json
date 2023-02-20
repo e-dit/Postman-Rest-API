@@ -14,6 +14,7 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "89f64fd9-b1e1-4b76-9561-e54c2e3f388d",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
@@ -28,11 +29,10 @@
 									"});\r",
 									"pm.test(\"Autor - lista\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData[2].author).to.eql(\"typicode\");\r",
+									"    pm.expect(jsonData[2].id).to.eql(3);\r",
 									"});"
 								],
-								"type": "text/javascript",
-								"id": "89f64fd9-b1e1-4b76-9561-e54c2e3f388d"
+								"type": "text/javascript"
 							}
 						}
 					],
