@@ -616,7 +616,31 @@
 							"script": {
 								"id": "7e7236aa-9ee3-469d-969d-3b4b452c116d",
 								"exec": [
-									""
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check comment\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id).to.eql(pm.globals.get(\"idToDelete\"))\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check id\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id).to.eql(pm.globals.get(\"id\"));\r",
+									"});\r",
+									"\r",
+									"pm.globals.set(\"idToDelete\", pm.response.json().id);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2ff6327a-2d93-4cb0-b7b2-3c4781e0a9b4",
+								"exec": [
+									"pm.environment.set(\"randomcomment\", pm.variables.replaceIn('{{$randomCompanyName}}'));"
 								],
 								"type": "text/javascript"
 							}
@@ -631,7 +655,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"body\": \"some comment\"\r\n}\r\n\r\n    {\r\n        \"title\": \"{{title}}\",\r\n        \"author\": \"{{author}}\"\r\n    }\r\n",
+							"raw": "{\r\n    \"body\": \"{{$randomCompanyName}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
