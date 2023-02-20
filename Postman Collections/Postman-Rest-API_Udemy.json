@@ -121,13 +121,13 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "fcba20ec-3ed7-4824-9ec0-eb51343333e4",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});"
 								],
-								"type": "text/javascript",
-								"id": "fcba20ec-3ed7-4824-9ec0-eb51343333e4"
+								"type": "text/javascript"
 							}
 						}
 					],
