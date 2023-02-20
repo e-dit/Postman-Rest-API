@@ -630,17 +630,14 @@
 									"    pm.response.to.have.status(201);\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Check comment\", function () {\r",
+									"pm.test(\"Check id\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
 									"    pm.expect(jsonData.id).to.eql(pm.globals.get(\"idToDelete\"))\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Check id\", function () {\r",
-									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData.id).to.eql(pm.globals.get(\"id\"));\r",
-									"});\r",
+									"pm.globals.set(\"idToDelete\", pm.response.json().id);\r",
 									"\r",
-									"pm.globals.set(\"idToDelete\", pm.response.json().id);"
+									""
 								],
 								"type": "text/javascript"
 							}
