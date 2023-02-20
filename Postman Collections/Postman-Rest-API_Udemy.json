@@ -639,9 +639,8 @@
 									"\r",
 									"pm.test(\"Check comment\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData.id).to.eql(pm.environment.get(\"randomcompany\"))\r",
-									"});\r",
-									""
+									"    pm.expect(jsonData.response).to.eql(pm.environment.get(\"randomcompany\"))\r",
+									"});"
 								],
 								"type": "text/javascript"
 							}
