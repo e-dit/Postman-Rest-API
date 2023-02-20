@@ -393,11 +393,25 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "6090a5fc-7710-4a70-b46d-fd4dc02045d3",
 								"exec": [
-									""
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Autor - lista\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0].author).to.eql(\"typicode\");\r",
+									"});\r",
+									"pm.test(\"Autor - lista\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[1].author).to.eql(\"typicode2\");\r",
+									"});\r",
+									"pm.test(\"Autor - lista\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[2].author).to.eql(\"typicode\");\r",
+									"});"
 								],
-								"type": "text/javascript",
-								"id": "916cf78c-186b-4e1c-8477-3c8f347407ec"
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -408,7 +422,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://localhost:3000/comments"
+						"url": "http://{{host}}:3000/comments"
 					},
 					"response": []
 				},
