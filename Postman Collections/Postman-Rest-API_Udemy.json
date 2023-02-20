@@ -504,6 +504,9 @@
 							"script": {
 								"id": "7e7236aa-9ee3-469d-969d-3b4b452c116d",
 								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
 									""
 								],
 								"type": "text/javascript"
@@ -519,7 +522,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"body\": \"some comment\"\r\n}\r\n\r\n    {\r\n        \"title\": \"{{title}}\",\r\n        \"author\": \"{{author}}\"\r\n    }\r\n",
+							"raw": "{\r\n    \"body\": \"some comment\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
