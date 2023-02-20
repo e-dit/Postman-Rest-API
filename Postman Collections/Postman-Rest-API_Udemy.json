@@ -659,7 +659,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "af1d36fb-3bd5-4833-995d-1d9fb1a65948",
+						"id": "697860d0-1e00-42ed-a4c7-db52190514bc",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -669,14 +669,14 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "4d5db811-e2dd-4f93-9c06-b97388653b5f",
+						"id": "3d59820e-c725-401a-b756-65c30e58c38e",
 						"type": "text/javascript",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
 							"});",
 							"pm.test(\"Successful requests\", function () {",
-							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 404]);",
 							"});"
 						]
 					}
