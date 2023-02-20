@@ -314,7 +314,6 @@
 									"pm.test(\"Check author - Snippet Json value check\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
 									"    pm.expect(jsonData.author).to.eql(pm.environment.get(\"randomName\"))\r",
-									"\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Check title\", function () {\r",
