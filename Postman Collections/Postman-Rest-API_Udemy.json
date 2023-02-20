@@ -286,21 +286,39 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "82c031d8-be55-4cd1-a782-123623393a8d",
+								"id": "544acbf6-053b-4838-a561-a643b37d2eb2",
 								"exec": [
 									"pm.test(\"Status code is 201\", function () {\r",
 									"    pm.response.to.have.status(201);\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Check author - JSON value check\", function () {\r",
+									"pm.test(\"Check author - Snippet Json value check\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData.author).to.eql(pm.environment.get(\"author\"));\r",
+									"    pm.expect(jsonData.author).to.eql(pm.environment.get(\"randomName\"))\r",
+									"\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Check title - JSON value check\", function () {\r",
+									"pm.test(\"Check title\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData.title).to.eql(pm.globals.get(\"title\"));\r",
-									"});"
+									"    pm.expect(jsonData.title).to.eql(pm.globals.get(\"title\"))\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check id\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id).to.eql(pm.environment.get(\"iddelete\"));\r",
+									"});\r",
+									"\r",
+									"pm.environment.set(\"iddelete\", pm.response.json().id);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "63ed3041-bf8d-4f89-a849-f16569f6424b",
+								"exec": [
+									"pm.environment.set(\"randomName\", pm.variables.replaceIn('{{$randomFullName}}'));"
 								],
 								"type": "text/javascript"
 							}
@@ -315,7 +333,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\r\n        \"title\": \"{{title}}\",\r\n        \"author\": \"{{author}}\"\r\n    }",
+							"raw": "    {\r\n        \"title\": \"{{title}}\",\r\n        \"author\": \"{{randomName}}\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
