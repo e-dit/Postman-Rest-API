@@ -350,7 +350,7 @@
 								}
 							}
 						},
-						"url": "http://{{host}}:3000/posts"
+						"url": "http://{{host}}:3000/posts{{"
 					},
 					"response": []
 				},
