@@ -250,13 +250,13 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "355bfe8b-3986-4fae-a023-347dbe0be0dd",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});"
 								],
-								"type": "text/javascript",
-								"id": "355bfe8b-3986-4fae-a023-347dbe0be0dd"
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -269,7 +269,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\r\n        \"title\": \"json-server4\"\r\n    }",
+							"raw": "    {\r\n        \"title\": \"number 44\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
