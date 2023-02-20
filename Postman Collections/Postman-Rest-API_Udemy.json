@@ -592,7 +592,7 @@
 							"script": {
 								"id": "bb89a90b-6c7a-415c-825b-25f926359ab5",
 								"exec": [
-									"pm.environment.set(\"randomCompanyName\", pm.variables.replaceIn('{{$randomCompanyName'));"
+									"pm.environment.set(\"randomCompanyName\", pm.variables.replaceIn('{{$randomCompanyNam}}'));"
 								],
 								"type": "text/javascript"
 							}
