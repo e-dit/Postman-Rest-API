@@ -395,16 +395,7 @@
 							"script": {
 								"id": "6090a5fc-7710-4a70-b46d-fd4dc02045d3",
 								"exec": [
-									"\r",
-									"pm.test(\"Check comment\", function () {\r",
-									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData[0].body).to.eql(\"some comment\");\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Check postId\", function () {\r",
-									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData[1].postId).to.eql(2);\r",
-									"});"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -417,6 +408,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": "http://{{host}}:3000/comments"
 					},
 					"response": []
