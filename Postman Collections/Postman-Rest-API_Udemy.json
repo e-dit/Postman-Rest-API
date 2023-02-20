@@ -318,7 +318,7 @@
 									"    pm.expect(jsonData.id).to.eql(pm.globals.get(\"id\"));\r",
 									"});\r",
 									"\r",
-									"pm.globals.set(\"idToDelete\", pm.response.json().id);"
+									"pm.globals.set(\"idToDelete\", pm.response.json().idToDelete);"
 								],
 								"type": "text/javascript"
 							}
