@@ -734,58 +734,6 @@
 					}
 				}
 			]
-		},
-		{
-			"name": "New Folder",
-			"item": [
-				{
-					"name": "Dodawanie komentarza z pliku",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "7e7236aa-9ee3-469d-969d-3b4b452c116d",
-								"exec": [
-									"pm.test(\"Status code is 201\", function () {\r",
-									"    pm.response.to.have.status(201);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Check username - JSON value check\", function () {\r",
-									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData.author).to.eql(pm.iterationData.get(\"username\"));\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Check comment - JSON value check\", function () {\r",
-									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData.title).to.eql(pm.iterationData.get(\"comment\"));\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"id": "d1062313-832c-4037-a3c5-b2a869680471",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"body\": \"some comment\"\r\n}\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "http://{{host}}:3000/comments"
-					},
-					"response": []
-				}
-			],
-			"id": "a93af166-5598-4a70-8491-0cb178e982ac"
 		}
 	]
 }
