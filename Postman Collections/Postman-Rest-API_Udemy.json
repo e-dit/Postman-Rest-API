@@ -749,7 +749,16 @@
 									"pm.test(\"Status code is 201\", function () {\r",
 									"    pm.response.to.have.status(201);\r",
 									"});\r",
-									""
+									"\r",
+									"pm.test(\"Check username - JSON value check\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.author).to.eql(pm.iterationData.get(\"username\"));\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check comment - JSON value check\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.title).to.eql(pm.iterationData.get(\"comment\"));\r",
+									"});"
 								],
 								"type": "text/javascript"
 							}
