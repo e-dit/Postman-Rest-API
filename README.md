@@ -2,7 +2,7 @@
 
 Testowanie REST API:
  
-Wysyłanie żądań HTTP - GET, POST, PUT, PATCH, DELETE;
-Definiowanie i używanie zmiennych;
-Definiowanie środowisk;
-Dodawanie do żądań testów w JavaScript;
+wysyłanie żądań HTTP - GET, POST, PUT, PATCH, DELETE,
+definiowanie i używanie zmiennych,
+definiowanie środowisk,
+dodawanie do żądań testów w JavaScript.
