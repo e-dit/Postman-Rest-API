@@ -1,0 +1,739 @@
+{
+	"info": {
+		"_postman_id": "5afea740-2fb8-4c4d-8161-4611794b2de5",
+		"name": "Postman-Rest-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Posty",
+			"item": [
+				{
+					"name": "Pobranie wszystkich postów",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "89f64fd9-b1e1-4b76-9561-e54c2e3f388d",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check Author\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0].author).to.eql(\"typicode\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check Authork\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[1].author).to.eql(\"typicode2\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check id\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[2].id).to.eql(3);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "4460788c-0020-41c6-9cde-e1635d1bbe58",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://{{host}}:3000/posts"
+					},
+					"response": []
+				},
+				{
+					"name": "Pobranie wybranego posta",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7410ea93-9e23-4a30-a553-6862a720b556",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check title - contains string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"json-server\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check author - contains string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"typi\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check author - JSON value check\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.author).to.eql(\"typicode\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check title - JSON value check\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.title).to.eql(\"json-server\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "aae38322-2986-4421-b187-24d98e712853",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://{{host}}:3000/posts/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Pobranie posta ktorego nie ma",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"id": "6061ebef-42a2-47d0-99d7-e0d341833ac2"
+							}
+						}
+					],
+					"id": "05c513da-51a6-4a81-9e5b-e0accff261c8",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://{{host}}:3000/posts/5"
+					},
+					"response": []
+				},
+				{
+					"name": "Filtrowanie postów",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fcba20ec-3ed7-4824-9ec0-eb51343333e4",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "25606cc2-c31c-4092-a4fe-ff063964b52b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{host}}:3000/posts?title=json-server&author=typicode",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "3000",
+							"path": [
+								"posts"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "json-server"
+								},
+								{
+									"key": "author",
+									"value": "typicode"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Dodawanie posta",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "82c031d8-be55-4cd1-a782-123623393a8d",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check author - JSON value check\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.author).to.eql(pm.environment.get(\"author\"));\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check title - JSON value check\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.title).to.eql(pm.globals.get(\"title\"));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c6201d8b-0aad-435d-83b0-855aae7a831e",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "f10c57c8-27ea-4bab-acc3-cd894464897d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"title\": \"{{title}}\",\r\n        \"author\": \"{{author}}\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://{{host}}:3000/posts"
+					},
+					"response": []
+				},
+				{
+					"name": "Nadpisanie całego posta (PUT - wyczyści pola, których nie wyślemy)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "486167d1-7862-4c9a-8c8f-979fc68e86d3",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "730db1d0-4053-43c9-9381-4eaaeda72c95",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"title\": \"json-server3\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://{{host}}:3000/posts/3"
+					},
+					"response": []
+				},
+				{
+					"name": "Aktualizacja części posta (PATCH - aktualizuje pola, których wyślemy)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "355bfe8b-3986-4fae-a023-347dbe0be0dd",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "0098eba5-200d-445c-9d83-0f169fd34808",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"title\": \"number 44\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://{{host}}:3000/posts/4"
+					},
+					"response": []
+				},
+				{
+					"name": "Dodawanie posta do usunięcia",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cb3cb112-b37d-4785-aa1e-cb4281047f93",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check author - Snippet Json value check\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.author).to.eql(pm.environment.get(\"randomName\"))\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check title\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.title).to.eql(pm.globals.get(\"title\"))\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check id\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id).to.eql(pm.globals.get(\"id\"));\r",
+									"});\r",
+									"\r",
+									"pm.globals.set(\"idToDelete\", pm.response.json().id);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2b0d94ad-4245-41d5-91f7-a10f6814fcb3",
+								"exec": [
+									"pm.environment.set(\"randomName\", pm.variables.replaceIn('{{$randomFullName}}'));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "00bb6bee-46c3-46d0-ad7e-30bdf37a5ca8",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"title\": \"{{title}}\",\r\n        \"author\": \"{{randomName}}\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://{{host}}:3000/posts"
+					},
+					"response": []
+				},
+				{
+					"name": "Usuwanie posta",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "68a77989-86f6-4a94-95ca-2efa647f6a5c",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "6bb5de00-e650-48fa-84d5-cafa51ad8365",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://{{host}}:3000/posts/{{idToDelete}}"
+					},
+					"response": []
+				}
+			],
+			"id": "802a6e52-f9f5-4f52-a9b4-b67b480e7495"
+		},
+		{
+			"name": "Komentarze",
+			"item": [
+				{
+					"name": "Pobranie wszystkich komentarzy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6090a5fc-7710-4a70-b46d-fd4dc02045d3",
+								"exec": [
+									"pm.test(\"Check comment\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0].body).to.eql(\"some comment\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check postId\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[1].postId).to.eql(2);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "733ce07f-d4bd-41a9-95aa-f1ceb6d56526",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "http://{{host}}:3000/comments"
+					},
+					"response": []
+				},
+				{
+					"name": "Pobranie wybranego komentarza",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c108656d-7847-4a77-b3f7-282401f819aa",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "76913b3f-abc4-463e-9976-e22e6b4b3770",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://{{host}}:3000/comments/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Filtrowanie komentarzy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6416ff69-d82b-4981-ad83-aaafae395516",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "fc0cdfa1-8017-46d0-94b4-17eaead0ad3d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{host}}:3000/comments?body=some comment&postId=2",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "3000",
+							"path": [
+								"comments"
+							],
+							"query": [
+								{
+									"key": "body",
+									"value": "some comment"
+								},
+								{
+									"key": "postId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Dodawanie komentarza",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7e7236aa-9ee3-469d-969d-3b4b452c116d",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "686e1719-fa96-4abb-9cb1-895bba74012a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"body\": \"some comment\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://{{host}}:3000/comments"
+					},
+					"response": []
+				},
+				{
+					"name": "Nadpisanie całego komentarza",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"id": "2347e9de-07c9-4d44-913f-5053d7b57021"
+							}
+						}
+					],
+					"id": "cb6e6401-c7c5-4e8e-af14-43c0eaa7ba75",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"body\": \"some comment\",\r\n    \"postId\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/comments/2"
+					},
+					"response": []
+				},
+				{
+					"name": "Aktualizacja części komentarza",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "36cb0020-ea89-4b9a-92fe-61c7fd9e1aeb",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "bb89a90b-6c7a-415c-825b-25f926359ab5",
+								"exec": [
+									"pm.environment.set(\"randomCompanyName\", pm.variables.replaceIn('{{$randomCompanyName}}'));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "e26cc3e5-3225-4332-b229-9c0e1e328b7a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"body\": \"{{randomCompanyName}}\",\r\n    \"postId\": 12\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/comments/8"
+					},
+					"response": []
+				},
+				{
+					"name": "Dodawanie komentarza do usunięcia",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7e7236aa-9ee3-469d-969d-3b4b452c116d",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check id\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id).to.eql(pm.globals.get(\"idToDelete\"))\r",
+									"});\r",
+									"\r",
+									"pm.globals.set(\"idToDelete\", pm.response.json().id);\r",
+									"\r",
+									"pm.test(\"Check comment\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.comment).to.eql(pm.environment.get(\"randomcomment\"))\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2ff6327a-2d93-4cb0-b7b2-3c4781e0a9b4",
+								"exec": [
+									"pm.environment.set(\"randomcomment\", pm.variables.replaceIn('{{$randomcolor}}'));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "0acce3e5-eb7c-49c4-a977-8b2cfeca6e58",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"body\": \"{{$randomColor}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://{{host}}:3000/comments"
+					},
+					"response": []
+				},
+				{
+					"name": "Usuwanie komentarza",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6bfc303d-3231-498e-a6fa-860881769dc6",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "74bd20c2-0b24-4984-a30a-aecbf006f854",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:3000/comments/{{randomcomment}}"
+					},
+					"response": []
+				}
+			],
+			"id": "a479d728-07d7-4949-8f12-18ff7bf281b9",
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "22c41f32-af60-4515-9d98-e06345566b2c",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "b9ef29bd-34ce-4456-a5e5-ede45840bcf2",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Successful requests\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 404]);",
+							"});"
+						]
+					}
+				}
+			]
+		}
+	]
+}
