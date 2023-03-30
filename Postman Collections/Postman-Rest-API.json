@@ -621,7 +621,7 @@
 							"script": {
 								"id": "661de907-94b0-4825-aa0c-a5b19f5bdc5b",
 								"exec": [
-									"pm.environment.set(\"randomcolor\", pm.variables.replaceIn('{{$randomColor}}'));"
+									"pm.environment.set(\"randomcolors\", pm.variables.replaceIn('{{$randomcolor}}'));"
 								],
 								"type": "text/javascript"
 							}
@@ -635,9 +635,9 @@
 									"    pm.response.to.have.status(201);\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Check color\", function () {\r",
+									"pm.test(\"Check colors\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData.body).to.eql(pm.environment.get(\"randomcolor\"))\r",
+									"    pm.expect(jsonData.body).to.eql(pm.environment.get(\"randomcolors\"))\r",
 									"});\r",
 									"\r",
 									"pm.environment.set(\"idToDel\", pm.response.json().id);\r",
@@ -661,7 +661,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"body\": \"{{$randomColor}}\"\r\n}",
+							"raw": "{\r\n    \"body\": \"{{$randomcolor}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
