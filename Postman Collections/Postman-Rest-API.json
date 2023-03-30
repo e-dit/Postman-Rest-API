@@ -695,7 +695,7 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": "http://localhost:3000/comments/{{randomcomment}}"
+						"url": "http://localhost:3000/comments/{{$randomColor}}"
 					},
 					"response": []
 				}
