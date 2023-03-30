@@ -621,7 +621,7 @@
 							"script": {
 								"id": "661de907-94b0-4825-aa0c-a5b19f5bdc5b",
 								"exec": [
-									"pm.environment.set(\"randomcomment\", pm.variables.replaceIn('{{$randomColor}}'));"
+									"pm.environment.set(\"randomcolor\", pm.variables.replaceIn('{{$randomColor}}'));"
 								],
 								"type": "text/javascript"
 							}
@@ -635,9 +635,9 @@
 									"    pm.response.to.have.status(201);\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Check comment\", function () {\r",
+									"pm.test(\"Check color\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData.body).to.eql(pm.environment.get(\"randomcomment\"))\r",
+									"    pm.expect(jsonData.body).to.eql(pm.environment.get(\"randomcolor\"))\r",
 									"});\r",
 									"\r",
 									"pm.environment.set(\"idToDel\", pm.response.json().id);\r",
