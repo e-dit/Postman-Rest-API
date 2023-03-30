@@ -617,35 +617,36 @@
 					"name": "Dodawanie komentarza do usunięcia",
 					"event": [
 						{
-							"listen": "test",
+							"listen": "prerequest",
 							"script": {
-								"id": "7e7236aa-9ee3-469d-969d-3b4b452c116d",
+								"id": "661de907-94b0-4825-aa0c-a5b19f5bdc5b",
 								"exec": [
-									"pm.test(\"Status code is 201\", function () {\r",
-									"    pm.response.to.have.status(201);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Check id\", function () {\r",
-									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData.id).to.eql(pm.globals.get(\"idToDelete\"))\r",
-									"});\r",
-									"\r",
-									"pm.globals.set(\"idToDelete\", pm.response.json().id);\r",
-									"\r",
-									"pm.test(\"Check comment\", function () {\r",
-									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData.comment).to.eql(pm.environment.get(\"randomcomment\"))\r",
-									"});"
+									"pm.environment.set(\"randomcomment\", pm.variables.replaceIn('{{$randomColor}}'));"
 								],
 								"type": "text/javascript"
 							}
 						},
 						{
-							"listen": "prerequest",
+							"listen": "test",
 							"script": {
-								"id": "2ff6327a-2d93-4cb0-b7b2-3c4781e0a9b4",
+								"id": "1497cb2a-ada0-41fd-a93c-6d50d23b89f8",
 								"exec": [
-									"pm.environment.set(\"randomcomment\", pm.variables.replaceIn('{{$randomcolor}}'));"
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check comment\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.body).to.eql(pm.environment.get(\"randomcomment\"))\r",
+									"});\r",
+									"\r",
+									"pm.environment.set(\"idToDel\", pm.response.json().id);\r",
+									"\r",
+									"pm.test(\"Check id\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id).to.eql(pm.environment.get(\"idToDel\"))\r",
+									"});\r",
+									""
 								],
 								"type": "text/javascript"
 							}
