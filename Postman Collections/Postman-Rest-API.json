@@ -311,7 +311,7 @@
 									"    pm.response.to.have.status(201);\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Check author - Snippet Json value check\", function () {\r",
+									"pm.test(\"Check author\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
 									"    pm.expect(jsonData.author).to.eql(pm.environment.get(\"randomName\"))\r",
 									"});\r",
