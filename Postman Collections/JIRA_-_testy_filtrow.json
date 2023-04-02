@@ -169,7 +169,11 @@
 			},
 			"request": {
 				"auth": {
-					"type": "noauth"
+					"type": "basic",
+					"basic": {
+						"password": "ATATT3xFfGF0frgZ7WUH3KQIm3RwFoHfVJal6hYGeOLlCSBoSQEUqfOMZ5CEA2KhH5liqMXyrd1WmfuJs_eChvGa9IgMZk3Q3QcpCryhChsK_OlC-5uPyE8YevigVKsJruMBJxs8vjeMozBqSOZR9YVsC97BUc0aFRDHLGT0YC10isjq_tTQ7bg=01E5A302",
+						"username": "testowejira@interia.pl"
+					}
 				},
 				"method": "GET",
 				"header": [],
