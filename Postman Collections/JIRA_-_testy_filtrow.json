@@ -45,13 +45,17 @@
 					}
 				}
 			],
-			"_postman_id": "e8231193-993f-4e87-8a76-06edc232fd22",
+			"id": "e8231193-993f-4e87-8a76-06edc232fd22",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
 			"request": {
 				"auth": {
-					"type": "noauth"
+					"type": "basic",
+					"basic": {
+						"password": "ATATT3xFfGF0frgZ7WUH3KQIm3RwFoHfVJal6hYGeOLlCSBoSQEUqfOMZ5CEA2KhH5liqMXyrd1WmfuJs_eChvGa9IgMZk3Q3QcpCryhChsK_OlC-5uPyE8YevigVKsJruMBJxs8vjeMozBqSOZR9YVsC97BUc0aFRDHLGT0YC10isjq_tTQ7bg=01E5A302",
+						"username": "testowejira@interia.pl"
+					}
 				},
 				"method": "POST",
 				"header": [],
@@ -100,7 +104,7 @@
 					}
 				}
 			],
-			"_postman_id": "91f5a1d3-dc3e-42fe-a11d-60d3ac0773eb",
+			"id": "91f5a1d3-dc3e-42fe-a11d-60d3ac0773eb",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -155,7 +159,7 @@
 					}
 				}
 			],
-			"_postman_id": "84c5f5e9-1208-4853-aabf-827707946e83",
+			"id": "84c5f5e9-1208-4853-aabf-827707946e83",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -201,7 +205,7 @@
 					}
 				}
 			],
-			"_postman_id": "ce5e7e9b-4bc6-4e5b-a9db-e96efae879e4",
+			"id": "ce5e7e9b-4bc6-4e5b-a9db-e96efae879e4",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -252,7 +256,7 @@
 					}
 				}
 			],
-			"_postman_id": "820d33fb-c691-4878-85a2-8a0df8eab391",
+			"id": "820d33fb-c691-4878-85a2-8a0df8eab391",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -307,7 +311,7 @@
 					}
 				}
 			],
-			"_postman_id": "fb992514-dc9d-4382-ade2-40a45277ef2a",
+			"id": "fb992514-dc9d-4382-ade2-40a45277ef2a",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -359,7 +363,7 @@
 					}
 				}
 			],
-			"_postman_id": "a530d556-5c45-46a2-9559-6383657c2333",
+			"id": "a530d556-5c45-46a2-9559-6383657c2333",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -409,7 +413,7 @@
 					}
 				}
 			],
-			"_postman_id": "4d1c4af9-3b94-42c7-97b5-59055035884a",
+			"id": "4d1c4af9-3b94-42c7-97b5-59055035884a",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
