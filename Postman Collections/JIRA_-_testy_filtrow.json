@@ -1,0 +1,76 @@
+{
+	"info": {
+		"_postman_id": "93fa6d7c-cd94-4bc6-823a-fd88bee4185d",
+		"name": "JIRA - testy filtrow",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create filter",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "56e04393-a4ef-4820-923a-3e693fab0600",
+						"exec": [
+							"pm.environment.set(\"FilterName\", \"NewFilter\" + pm.variables.replaceIn('{{$timestamp}}'));"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "9e324f11-f2bb-418e-8bc2-b463ebe04197",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check description\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.description).to.eql(\"Lists all open bugs Postman\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.contain(\"NewFilter\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"ed\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "e8231193-993f-4e87-8a76-06edc232fd22",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "ATATT3xFfGF0MZxbshP6KTKyZeWD9-56vOHOaC_k0MeXgSWcUTT9YiL2nkVOe3CZKIkegnSfbkkGcCIJWhGAfu7cNB4H_WO8KlpFo3Rv8VYJxZhpHN8CThFxHMDuH_9OshWGYj6PV6WhJDoGL0mkdyGyb_DajkSjtqSuVYBjkkxAQadH8_ATsPs=34DE6A4B",
+						"username": "testowejira@interia.pl"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"{{FilterName}}\",\r\n    \"description\": \"Lists all open bugs Postman\",\r\n    \"jql\": \"project = TJ AND issuetype = Bug\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://testowejira1.atlassian.net/rest/api/latest/filter"
+			},
+			"response": []
+		}
+	]
+}
