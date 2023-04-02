@@ -1,0 +1,459 @@
+{
+	"info": {
+		"_postman_id": "93fa6d7c-cd94-4bc6-823a-fd88bee4185d",
+		"name": "JIRA - testy filtrow",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create filter",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "56e04393-a4ef-4820-923a-3e693fab0600",
+						"exec": [
+							"pm.environment.set(\"FilterName\", \"NewFilter\" + pm.variables.replaceIn('{{$timestamp}}'));"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "9e324f11-f2bb-418e-8bc2-b463ebe04197",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check description\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.description).to.eql(\"Lists all open bugs Postman\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.contain(\"NewFilter\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"ed\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "e8231193-993f-4e87-8a76-06edc232fd22",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "ATATT3xFfGF0MZxbshP6KTKyZeWD9-56vOHOaC_k0MeXgSWcUTT9YiL2nkVOe3CZKIkegnSfbkkGcCIJWhGAfu7cNB4H_WO8KlpFo3Rv8VYJxZhpHN8CThFxHMDuH_9OshWGYj6PV6WhJDoGL0mkdyGyb_DajkSjtqSuVYBjkkxAQadH8_ATsPs=34DE6A4B",
+						"username": "testowejira@interia.pl"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"{{FilterName}}\",\r\n    \"description\": \"Lists all open bugs Postman\",\r\n    \"jql\": \"project = TJ AND issuetype = Bug\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://testowejira1.atlassian.net/rest/api/latest/filter"
+			},
+			"response": []
+		},
+		{
+			"name": "Create filter with the same name",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "56e04393-a4ef-4820-923a-3e693fab0600",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "9e324f11-f2bb-418e-8bc2-b463ebe04197",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check error message\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.errors[\"filterName\"]).to.eql(\"Filtr o takiej samej nazwie już istnieje.\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "7582f5ab-6359-4744-b03f-e50a0869bf5b",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "ATATT3xFfGF0MZxbshP6KTKyZeWD9-56vOHOaC_k0MeXgSWcUTT9YiL2nkVOe3CZKIkegnSfbkkGcCIJWhGAfu7cNB4H_WO8KlpFo3Rv8VYJxZhpHN8CThFxHMDuH_9OshWGYj6PV6WhJDoGL0mkdyGyb_DajkSjtqSuVYBjkkxAQadH8_ATsPs=34DE6A4B",
+						"username": "testowejira@interia.pl"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"{{FilterName}}\",\r\n    \"description\": \"Lists all open bugs Postman\",\r\n    \"jql\": \"project = TJ AND issuetype = Bug\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://testowejira1.atlassian.net/rest/api/latest/filter"
+			},
+			"response": []
+		},
+		{
+			"name": "Get filter",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "56e04393-a4ef-4820-923a-3e693fab0600",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "9e324f11-f2bb-418e-8bc2-b463ebe04197",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check filter name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(\"All Open Bugs\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "5a64d28d-1d47-4275-85c1-06948aea8009",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "ATATT3xFfGF0MZxbshP6KTKyZeWD9-56vOHOaC_k0MeXgSWcUTT9YiL2nkVOe3CZKIkegnSfbkkGcCIJWhGAfu7cNB4H_WO8KlpFo3Rv8VYJxZhpHN8CThFxHMDuH_9OshWGYj6PV6WhJDoGL0mkdyGyb_DajkSjtqSuVYBjkkxAQadH8_ATsPs=34DE6A4B",
+						"username": "testowejira@interia.pl"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "https://testowejira1.atlassian.net/rest/api/latest/filter/10001"
+			},
+			"response": []
+		},
+		{
+			"name": "Get filter which does not exsist",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "56e04393-a4ef-4820-923a-3e693fab0600",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "9e324f11-f2bb-418e-8bc2-b463ebe04197",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check error messages\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.errorMessages[0]).to.eql(\"Wybrany filtr nie jest dostępny; prawdopodobnie został usunięty lub jego uprawnienia uległy zmianie.\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "6741f87f-6709-4be2-8e93-37e593fb961f",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "ATATT3xFfGF0MZxbshP6KTKyZeWD9-56vOHOaC_k0MeXgSWcUTT9YiL2nkVOe3CZKIkegnSfbkkGcCIJWhGAfu7cNB4H_WO8KlpFo3Rv8VYJxZhpHN8CThFxHMDuH_9OshWGYj6PV6WhJDoGL0mkdyGyb_DajkSjtqSuVYBjkkxAQadH8_ATsPs=34DE6A4B",
+						"username": "testowejira@interia.pl"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "https://testowejira1.atlassian.net/rest/api/latest/filter/999"
+			},
+			"response": []
+		},
+		{
+			"name": "Update filter",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "56e04393-a4ef-4820-923a-3e693fab0600",
+						"exec": [
+							"pm.environment.set(\"FilterNameAfterUpdate\", \"UpdatedFilter\" + pm.variables.replaceIn('{{$timestamp}}'));"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "9e324f11-f2bb-418e-8bc2-b463ebe04197",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check description\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.description).to.eql(\"Lists all open bugs Postman\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.contain(\"UpdatedFilter\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "ef7a5012-18af-4ddc-b48d-f5bfc8daed21",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "ATATT3xFfGF0MZxbshP6KTKyZeWD9-56vOHOaC_k0MeXgSWcUTT9YiL2nkVOe3CZKIkegnSfbkkGcCIJWhGAfu7cNB4H_WO8KlpFo3Rv8VYJxZhpHN8CThFxHMDuH_9OshWGYj6PV6WhJDoGL0mkdyGyb_DajkSjtqSuVYBjkkxAQadH8_ATsPs=34DE6A4B",
+						"username": "testowejira@interia.pl"
+					}
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"{{FilterNameAfterUpdate}}\",\r\n    \"description\": \"Lists all open bugs Postman\",\r\n    \"jql\": \"project = TJ AND issuetype = Bug\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://testowejira1.atlassian.net/rest/api/latest/filter/10003"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete filter whitch does not exsist",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "56e04393-a4ef-4820-923a-3e693fab0600",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "9e324f11-f2bb-418e-8bc2-b463ebe04197",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check error messages\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.errorMessages[0]).to.eql(\"Filtr obecnie nie istnieje.\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "3e286a27-d02b-41df-82fb-8dba10f4c5f3",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "ATATT3xFfGF0MZxbshP6KTKyZeWD9-56vOHOaC_k0MeXgSWcUTT9YiL2nkVOe3CZKIkegnSfbkkGcCIJWhGAfu7cNB4H_WO8KlpFo3Rv8VYJxZhpHN8CThFxHMDuH_9OshWGYj6PV6WhJDoGL0mkdyGyb_DajkSjtqSuVYBjkkxAQadH8_ATsPs=34DE6A4B",
+						"username": "testowejira@interia.pl"
+					}
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": "https://testowejira1.atlassian.net/rest/api/latest/filter/99"
+			},
+			"response": []
+		},
+		{
+			"name": "Create filter to delete",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "56e04393-a4ef-4820-923a-3e693fab0600",
+						"exec": [
+							"pm.environment.set(\"FilterNameToDelete\", \"FilterToDelete\" + pm.variables.replaceIn('{{$timestamp}}'));"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "9e324f11-f2bb-418e-8bc2-b463ebe04197",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check description\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.description).to.eql(\"Lists all open bugs Postman\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.contain(\"FilterToDelete\");\r",
+							"});\r",
+							"\r",
+							"pm.globals.set(\"idToDelete\", pm.response.json().id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "be72c7d4-6f47-47b4-bd8e-57a2cbba6076",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "ATATT3xFfGF0MZxbshP6KTKyZeWD9-56vOHOaC_k0MeXgSWcUTT9YiL2nkVOe3CZKIkegnSfbkkGcCIJWhGAfu7cNB4H_WO8KlpFo3Rv8VYJxZhpHN8CThFxHMDuH_9OshWGYj6PV6WhJDoGL0mkdyGyb_DajkSjtqSuVYBjkkxAQadH8_ATsPs=34DE6A4B",
+						"username": "testowejira@interia.pl"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"{{FilterNameToDelete}}\",\r\n    \"description\": \"Lists all open bugs Postman\",\r\n    \"jql\": \"project = TJ AND issuetype = Bug\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://testowejira1.atlassian.net/rest/api/latest/filter"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete filter to delete",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "56e04393-a4ef-4820-923a-3e693fab0600",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "9e324f11-f2bb-418e-8bc2-b463ebe04197",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "fb50cc71-3ec0-4f68-9eaf-c389d1340a91",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "ATATT3xFfGF0MZxbshP6KTKyZeWD9-56vOHOaC_k0MeXgSWcUTT9YiL2nkVOe3CZKIkegnSfbkkGcCIJWhGAfu7cNB4H_WO8KlpFo3Rv8VYJxZhpHN8CThFxHMDuH_9OshWGYj6PV6WhJDoGL0mkdyGyb_DajkSjtqSuVYBjkkxAQadH8_ATsPs=34DE6A4B",
+						"username": "testowejira@interia.pl"
+					}
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": "https://testowejira1.atlassian.net/rest/api/latest/filter/{{idToDelete}}"
+			},
+			"response": []
+		}
+	]
+}
