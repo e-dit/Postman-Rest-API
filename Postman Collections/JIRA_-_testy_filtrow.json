@@ -1,0 +1,427 @@
+{
+	"info": {
+		"_postman_id": "93fa6d7c-cd94-4bc6-823a-fd88bee4185d",
+		"name": "JIRA - testy filtrow",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create filter",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "56e04393-a4ef-4820-923a-3e693fab0600",
+						"exec": [
+							"pm.environment.set(\"FilterName\", \"NewFilter\" + pm.variables.replaceIn('{{$timestamp}}'));"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "9e324f11-f2bb-418e-8bc2-b463ebe04197",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check description\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.description).to.eql(\"Lists all open bugs Postman\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.contain(\"NewFilter\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"ed\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "e8231193-993f-4e87-8a76-06edc232fd22",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"{{FilterName}}\",\r\n    \"description\": \"Lists all open bugs Postman\",\r\n    \"jql\": \"project = TJ AND issuetype = Bug\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://testowejira1.atlassian.net/rest/api/latest/filter"
+			},
+			"response": []
+		},
+		{
+			"name": "Create filter with the same name",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "56e04393-a4ef-4820-923a-3e693fab0600",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "9e324f11-f2bb-418e-8bc2-b463ebe04197",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check error message\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.errors[\"filterName\"]).to.eql(\"Filtr o takiej samej nazwie już istnieje.\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "91f5a1d3-dc3e-42fe-a11d-60d3ac0773eb",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"{{FilterName}}\",\r\n    \"description\": \"Lists all open bugs Postman\",\r\n    \"jql\": \"project = TJ AND issuetype = Bug\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://testowejira1.atlassian.net/rest/api/latest/filter"
+			},
+			"response": []
+		},
+		{
+			"name": "Get filter",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "56e04393-a4ef-4820-923a-3e693fab0600",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "9e324f11-f2bb-418e-8bc2-b463ebe04197",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check filter name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(\"All Open Bugs\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "84c5f5e9-1208-4853-aabf-827707946e83",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": "https://testowejira1.atlassian.net/rest/api/latest/filter/10001"
+			},
+			"response": []
+		},
+		{
+			"name": "Get filter which does not exsist",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "56e04393-a4ef-4820-923a-3e693fab0600",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "9e324f11-f2bb-418e-8bc2-b463ebe04197",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check error messages\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.errorMessages[0]).to.eql(\"Wybrany filtr nie jest dostępny; prawdopodobnie został usunięty lub jego uprawnienia uległy zmianie.\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "ce5e7e9b-4bc6-4e5b-a9db-e96efae879e4",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": "https://testowejira1.atlassian.net/rest/api/latest/filter/999"
+			},
+			"response": []
+		},
+		{
+			"name": "Update filter",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "56e04393-a4ef-4820-923a-3e693fab0600",
+						"exec": [
+							"pm.environment.set(\"FilterNameAfterUpdate\", \"UpdatedFilter\" + pm.variables.replaceIn('{{$timestamp}}'));"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "9e324f11-f2bb-418e-8bc2-b463ebe04197",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check description\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.description).to.eql(\"Lists all open bugs Postman\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.contain(\"UpdatedFilter\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "820d33fb-c691-4878-85a2-8a0df8eab391",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"{{FilterNameAfterUpdate}}\",\r\n    \"description\": \"Lists all open bugs Postman\",\r\n    \"jql\": \"project = TJ AND issuetype = Bug\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://testowejira1.atlassian.net/rest/api/latest/filter/10003"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete filter whitch does not exsist",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "56e04393-a4ef-4820-923a-3e693fab0600",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "9e324f11-f2bb-418e-8bc2-b463ebe04197",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check error messages\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.errorMessages[0]).to.eql(\"Filtr obecnie nie istnieje.\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "fb992514-dc9d-4382-ade2-40a45277ef2a",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": "https://testowejira1.atlassian.net/rest/api/latest/filter/99"
+			},
+			"response": []
+		},
+		{
+			"name": "Create filter to delete",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "56e04393-a4ef-4820-923a-3e693fab0600",
+						"exec": [
+							"pm.environment.set(\"FilterNameToDelete\", \"FilterToDelete\" + pm.variables.replaceIn('{{$timestamp}}'));"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "9e324f11-f2bb-418e-8bc2-b463ebe04197",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check description\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.description).to.eql(\"Lists all open bugs Postman\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.contain(\"FilterToDelete\");\r",
+							"});\r",
+							"\r",
+							"pm.globals.set(\"idToDelete\", pm.response.json().id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "a530d556-5c45-46a2-9559-6383657c2333",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"{{FilterNameToDelete}}\",\r\n    \"description\": \"Lists all open bugs Postman\",\r\n    \"jql\": \"project = TJ AND issuetype = Bug\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://testowejira1.atlassian.net/rest/api/latest/filter"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete filter to delete",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "56e04393-a4ef-4820-923a-3e693fab0600",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "9e324f11-f2bb-418e-8bc2-b463ebe04197",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "4d1c4af9-3b94-42c7-97b5-59055035884a",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": "https://testowejira1.atlassian.net/rest/api/latest/filter/{{idToDelete}}"
+			},
+			"response": []
+		}
+	]
+}
