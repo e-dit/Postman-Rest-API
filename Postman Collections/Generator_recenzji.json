@@ -1,0 +1,65 @@
+{
+	"info": {
+		"_postman_id": "861d2807-ea40-4e88-8f47-5c2381581f8d",
+		"name": "Generator recenzji",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Dodawanie posta z recenzją",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "82c031d8-be55-4cd1-a782-123623393a8d",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check author\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.author).to.eql(pm.environment.get(\"author\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check title\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.title).to.eql(pm.globals.get(\"title\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c6201d8b-0aad-435d-83b0-855aae7a831e",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "f95e6807-3391-49de-a386-6af4e70075d3",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"title\": \"{{title}}\",\r\n        \"author\": \"{{author}}\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://{{host}}:3000/posts"
+			},
+			"response": []
+		}
+	]
+}
